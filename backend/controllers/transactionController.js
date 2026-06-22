@@ -3,7 +3,7 @@ import { sql } from "../config/db.js"
 export const getTransactionById = async (req,res)=>{
     const {userId} = req.params
     try {
-        const response = await sql`select * from transaction where user_id = ${userId}`
+        const response = await sql`select * from transaction where user_id = ${userId} order by created_at desc`
         res.status(200).json({message:"Transaction fetched successfully",data:response})
     } catch (error) {
         console.log("Error fetching transaction",error)
